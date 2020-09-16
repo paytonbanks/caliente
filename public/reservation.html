@@ -31,18 +31,18 @@
                         <form>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input id="name" class="form-control" type="text" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input class="form-control" type="text" placeholder="Enter your 10-digit number">
+                                <input id="phoneNumber" class="form-control" type="text" placeholder="Enter your 10-digit number">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                             </div>
                             
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary submitBtn">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -50,6 +50,36 @@
             <a href="">Reservation API</a> | <a href="">Waitlist API</a>
         </div>
     </div>
-</body>
 
-</html>
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+$(".submitBtn").on("click", function(event){
+    event.preventDefault();
+    var newResObj = {
+        name:  $("#name").val().trim(),
+        phoneNumber:  $("#phoneNumber").val().trim(),
+        email: $("#email").val().trim()
+   }
+   console.log(newResObj)
+
+   $.post("/api/waiting", newResObj, function(data){
+
+        console.log(data);
+        if(data){ alert("You have a confirmed reservation")}
+        else{alert("You are on the wait list")}
+   })
+    
+    
+        $("#name").val("");
+        $("#phoneNumber").val("");
+        $("#email").val("");
+
+})
+
+</script>

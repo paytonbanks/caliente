@@ -67,8 +67,10 @@ app.get("/api/waiting/:item", function(req, res) {
     return res.json(false);
 });
 
-// Create New Characters - takes in JSON input
+// Create New reservation - takes in JSON input
 app.post("/api/waiting", function(req, res) {
+    console.log(req.body);
+    
     var item = req.body;
     console.log(item);
     waiting.push(item);
