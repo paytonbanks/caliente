@@ -14,15 +14,15 @@
 <body>
     <div class="wrapper">
         <div class="jumbotron">
-            <h1 class="display-4"><span>Caliente Restaurant</span></h1>
+            <h1 class="display-4"><span class="fa fa-fire-alt">Caliente Restaurant</span></h1>
             <hr class="my-4">
             <p>Make a Reservation</p>
-            <a class="btn btn-primary btn-lg" href="./index.html" role="button"><i class="fa fa-home"></i>Go Home</a>
-            <a class="btn btn-danger btn-lg" href="./view.html" role="button"><i class="fa fa-list-alt"></i>View
+            <a class="btn btn-primary btn-lg" href="./index.html" role="button"><i class="fa fa-home"></i> Go Home</a>
+            <a class="btn btn-danger btn-lg" href="./view.html" role="button"><i class="fa fa-list-alt"></i> View
                 Tables</a>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-sm-12 col-md-8">
                 <div class="card">
                     <div class="card-header">
                         Table Reservation
@@ -31,25 +31,45 @@
                         <form>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input class="form-control" type="text" placeholder="">
+                                <input class="form-control" type="text" id="name" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input class="form-control" type="text" placeholder="Enter your 10-digit number">
+                                <input class="form-control" type="text" id="number" placeholder="Enter your 10-digit number">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                             </div>
                             
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-primary" id="submitBtn">Submit</button>
                         </form>
                     </div>
                 </div>
+                <a href="/api/reservations">Reservation API</a> | <a href="/api/waitlist">Waitlist API</a>
             </div>
-            <a href="">Reservation API</a> | <a href="">Waitlist API</a>
         </div>
     </div>
+    
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $("#submitBtn").on("click", function(event) {
+          event.preventDefault();
+          var newRes = {
+            name: $("#name").val().trim(),
+            number: $("#number").val().trim(),
+            email: $("#email").val().trim(),
+            id: $("#id").val().trim()
+          };
+    
+          // Question: What does this code do??
+          $.post("/api/reservations", newRes)
+            .then(function(data) {
+              console.log("reservation.html", data);
+              alert("Adding you to the reservation list...");
+            });
+        });
+      </script>
 </body>
 
 </html>
