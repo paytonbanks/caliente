@@ -2,6 +2,7 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+const { getMaxListeners } = require("process");
 
 // Sets up the Express App
 // =============================================================
@@ -16,21 +17,26 @@ var waiting = [{
 
         name: "Eric",
         id: 1,
+        phoneNumber: "952-288-5051",
+        email: "elafontsee@gmail.com"
     },
     {
-
         name: "Haley",
         id: 2,
+        phoneNumber: "555-1234",
+        email: "HMyers@gmail.com"
     },
     {
-
         name: "Miller",
         id: 3,
+        phoneNumber: "555-4321",
+        email: "MRich@gmail.com"
     },
     {
-
         name: "Payton",
         id: 4,
+        phoneNumber: "555-5678",
+        email: "Payton@gmail.com"
     }
 ];
 
