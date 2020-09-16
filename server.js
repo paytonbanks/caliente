@@ -13,31 +13,31 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 var waiting = [{
-        routeName: "eric",
+
         name: "Eric",
         id: 1,
     },
     {
-        routeName: "haley",
+
         name: "Haley",
         id: 2,
     },
     {
-        routeName: "miller",
+
         name: "Miller",
         id: 3,
     },
     {
-        routeName: "payton",
+
         name: "Payton",
         id: 4,
     }
 ];
 
-// app.get("/", function(req, res) {
-//     // res.send("Welcome to the Star Wars Page!")
-//     res.sendFile(path.join(__dirname, "view.html"));
-// });
+app.get("/", function(req, res) {
+    // res.send("Welcome to the Star Wars Page!")
+    res.sendFile(path.join(__dirname, "view.html"));
+});
 
 // Displays all characters
 app.get("/api/waiting", function(req, res) {
@@ -46,13 +46,14 @@ app.get("/api/waiting", function(req, res) {
 
 
 // Displays a single character, or returns false
-app.get("/api/waiting/:newwaiting", function(req, res) {
-    var current = req.params.newwaiting;
+//Might not need this
+app.get("/api/waiting/:item", function(req, res) {
+    var current = req.params.item;
 
     console.log(current);
 
     for (var i = 0; i < waiting.length; i++) {
-        if (current === waiting[i].routeName) {
+        if (current === waiting[i].id) {
             return res.json(waiting[i]);
         }
     }
@@ -61,19 +62,12 @@ app.get("/api/waiting/:newwaiting", function(req, res) {
 });
 
 // Create New Characters - takes in JSON input
-// app.post("/api/waiting", function(req, res) {
-//     // req.body hosts is equal to the JSON post sent from the user
-//     // This works because of our body parsing middleware
-//     var newWaiting = req.body;
-
-//     console.log(newWaiting);
-
-//     // We then add the json the user sent to the character array
-//     characters.push(newWaiting);
-
-//     // We then display the JSON to the users
-//     res.json(newWaiting);
-// });
+app.post("/api/waiting", function(req, res) {
+    var item = req.body;
+    console.log(item);
+    waiting.push(item);
+    res.json(item);
+});
 
 // Starts the server to begin listening
 // =============================================================
