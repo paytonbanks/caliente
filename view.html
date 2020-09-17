@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./style.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Tables</title>
@@ -16,10 +16,10 @@
     <div class="wrapper">
         <div class="jumbotron">
             <h1 class="display-4"><span>Caliente Restaurant</h1></span>
-            <hr class="my-4">
-            <p>View current reservations and waitlist</p>
-            <a class="btn btn-primary btn-lg" href="./index.html" role="button"><i class="fa fa-home"></i>Go Home</a>
-            <a class="btn btn-warning btn-lg" href="./reservation.html" role="button"><i class="fa fa-id-card"></i>Make
+                <hr class="my-4">
+                <p>View current reservations and waitlist</p>
+                <a class="btn btn-primary btn-lg" href="./index.html" role="button"><i class="fa fa-home"></i>Go Home</a>
+                <a class="btn btn-warning btn-lg" href="./reservation.html" role="button"><i class="fa fa-id-card"></i>Make
                 a Reservation</a>
         </div>
 
@@ -29,13 +29,16 @@
                     <div class="card bg-light mb-3">
                         <div class="card-header"><i class="fa fa-fire-alt"></i>Current Reservations</div>
                         <div class="card-body">
+                            <button type="submit" class="btn btn-primary btn-md" id="search-btn"><span
+                                class="fa fa-search"></span> Search
+                              Your Feelings. You know it is true.</button>
                             <h5 class="card-title"></h5>
                             <p class="card-text"></p>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="card bg-light mb-3" >
+                    <div class="card bg-light mb-3">
                         <div class="card-header"><span><i class="fa fa-clock"></i>Waitlist</span></div>
                         <div class="card-body">
                             <h5 class="card-title"></h5>
@@ -47,6 +50,14 @@
         </div>
     </div>
     </div>
+    <script type="text/javascript">
+        const queryURL = "/api/waiting"
+
+        $.get(queryURL, function(response) {
+            console.log(response);
+
+        });
+    </script>
 </body>
 
 </html>
