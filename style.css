@@ -1,3 +1,37 @@
+@font-face{
+    font-family: "Viga";
+    src: url("https://fonts.googleapis.com/css2?family=Viga&display=swap");
+    src: url("Viga-Regular.ttf")
+}
+
 body {
     margin: 20px;
+    background-color: #fcfcfcef;
+    background-image: url("https://www.transparenttextures.com/patterns/snow.png");
+
+}
+
+.jumbotron {
+    background-color: #b33516;
+    background-image: url("https://www.transparenttextures.com/patterns/snow.png");
+    color: white;
+    font-family: "viga", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+span{
+    text-shadow: 4px 4px 4px black;
+}
+
+.card-header{
+    background-color: #88270f;
+    color: white;
+    font-size: 1.25rem;
+    font-family: "viga", Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-shadow: 4px 4px 4px #3f1004;
+}
+
+a {
+    color: black
+}
+a:hover{
+    color: #3f1004
 }
