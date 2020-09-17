@@ -14,15 +14,17 @@
 <body>
     <div class="wrapper">
         <div class="jumbotron">
-            <h1 class="display-4"><span class="fa fa-fire-alt">Caliente Restaurant</span></h1>
-            <hr class="my-4">
-            <p>Make a Reservation</p>
-            <a class="btn btn-primary btn-lg" href="./index.html" role="button"><i class="fa fa-home"></i> Go Home</a>
-            <a class="btn btn-danger btn-lg" href="./view.html" role="button"><i class="fa fa-list-alt"></i> View
-                Tables</a>
+            <h1  class="text-center"><span style="font-size: 4.5rem;">Caliente Restaurant</span></h1>
+            <h4 class="text-center">Make a Reservation</h4>
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-dark btn-lg" href="./index.html" role="button"><i class="fa fa-home"></i> Go Home</a>
+                <a class="btn btn-dark btn-lg" href="./view.html" role="button"><i class="fa fa-list-alt"></i> View
+                    Tables</a>
+
+            </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-8">
+        <div class="row d-flex justify-content-center">
+            <div class="col-sm-12 col-md-8 ">
                 <div class="card">
                     <div class="card-header">
                         Table Reservation
@@ -42,11 +44,12 @@
                                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                             </div>
                             
-                            <button type="button" class="btn btn-primary" id="submitBtn">Submit</button>
+                            <button type="button" class="btn btn-outline-dark" id="submitBtn">Submit</button>
                         </form>
                     </div>
                 </div>
                 <a href="/api/reservations">Reservation API</a> | <a href="/api/waitlist">Waitlist API</a>
+                </div>
             </div>
         </div>
     </div>
