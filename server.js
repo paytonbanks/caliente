@@ -12,8 +12,9 @@ var PORT = 3000; //lets heroku decide the path
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
-var waiting = [{
+const waiting = [{
 
         name: "Eric",
         id: 1,
@@ -40,41 +41,42 @@ var waiting = [{
     }
 ];
 
+const reservation = [];
+const waitList = [];
+
 app.get("/", function(req, res) {
-    // res.send("Welcome to the Star Wars Page!")
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+app.get("/view", function(req, res) {
     res.sendFile(path.join(__dirname, "view.html"));
 });
-
-// Displays all characters
+app.get("/reservation", function(req, res) {
+    res.sendFile(path.join(__dirname, "reservation.html"));
+});
 app.get("/api/waiting", function(req, res) {
     return res.json(waiting);
 });
-
-
-// Displays a single character, or returns false
-//Might not need this
-app.get("/api/waiting/:item", function(req, res) {
-    var current = req.params.item;
-
-    console.log(current);
-
-    for (var i = 0; i < waiting.length; i++) {
-        if (current === waiting[i].id) {
-            return res.json(waiting[i]);
-        }
-    }
-
-    return res.json(false);
-});
-
+// app.get("/api/waiting/:item", function(req, res) {
+//     var current = req.params.item;
+//     console.log(current);
+//     for (var i = 0; i < waiting.length; i++) {
+//         if (current === waiting[i].id) {
+//             return res.json(waiting[i]);
+//         }
+//     }
+//     return res.json(false);
+// });
 // Create New Characters - takes in JSON input
 app.post("/api/waiting", function(req, res) {
-    var item = req.body;
-    console.log(item);
-    waiting.push(item);
-    res.json(item);
+    var party = req.body;
+    console.log(party);
+    if (reservation.length <= 5) {
+        reservation.push(party);
+    } else {
+        waitList.push(party);
+    }
+    res.json(party);
 });
-
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {

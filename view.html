@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link rel="stylesheet" href="/style.css" type="text/css">
     <script src="https://code.jquery.com/jquery.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +18,8 @@
             <h1 class="text-center"><span style="font-size: 4.5rem;"><i class="fa fa-pepper-hot"></i>Caliente Restaurant</h1></span>
                 <h4 class="text-center">View current reservations and waitlist</h4>
                 <div class="d-flex justify-content-center">
-                    <a class="btn btn-dark btn-lg" href="./index.html" role="button"><i class="fa fa-home"></i> Go Home</a>
-                    <a class="btn btn-dark btn-lg" href="./reservation.html" role="button"><i
+                    <a class="btn btn-dark btn-lg" href="/" role="button"><i class="fa fa-home"></i> Go Home</a>
+                    <a class="btn btn-dark btn-lg" href="/reservation" role="button"><i
                             class="fa fa-id-card"></i> Make a Reservation</a>
                 </div>
         </div>
@@ -37,9 +37,8 @@
                 <div class="card-body">
                     <div class="card bg-light mb-3">
                         <div class="card-header"><span><i class="fa fa-clock"></i>Waitlist</span></div>
-                        <div class="card-body">
-                            <h5 class="card-title"></h5>
-                            <p class="card-text"></p>
+                        <div class="card-body" id="currentWait">
+
                         </div>
                     </div>
                 </div>
@@ -50,20 +49,40 @@
     <script type="text/javascript">
         $.get("/api/waiting", function(data) {
             console.log(data);
+            for (var i = 0; i < 5; i++) {
 
-            var tableNum = $("<h5>").text("Table #" + table).addClass("card-title");
-            $("#currentRes").append(tableNum);
+                var tableNum = $("<h5>").text("Table #" + (i + 1)).addClass("card-title");
+                $("#currentRes").append(tableNum);
 
-            var resID = $("<p>").text("ID: " + data[0].id).addClass("card-text");
-            $("#currentRes").append(resID);
-            var resName = $("<p>").text("Name: " + data[0].name).addClass("card-text");
-            $("#currentRes").append(resName);
-            var resEmail = $("<p>").text("Name: " + data[0].email).addClass("card-text");
-            $("#currentRes").append(resEmail);
-            var resPhone = $("<p>").text("Name: " + data[0].phoneNumber).addClass("card-text");
-            $("#currentRes").append(resPhone);
+                var resID = $("<p>").text("ID: " + data[i].id).addClass("card-text");
+                $("#currentRes").append(resID);
+                var resName = $("<p>").text("Name: " + data[i].name).addClass("card-text");
+                $("#currentRes").append(resName);
+                var resEmail = $("<p>").text("Name: " + data[i].email).addClass("card-text");
+                $("#currentRes").append(resEmail);
+                var resPhone = $("<p>").text("Name: " + data[i].phoneNumber).addClass("card-text");
+                $("#currentRes").append(resPhone);
+                var line = $("<hr>");
+                resPhone.append(line);
+            };
 
+            //     for (var i = 5; i < waiting.length; i++) {
 
+            //         var tableNum = $("<h5>").text("Table #" + (i + 1)).addClass("card-title");
+            //         $("#currentWait").append(tableNum);
+
+            //         var resID = $("<p>").text("ID: " + data[i].id).addClass("card-text");
+            //         $("#currentWait").append(resID);
+            //         var resName = $("<p>").text("Name: " + data[i].name).addClass("card-text");
+            //         $("#currentWait").append(resName);
+            //         var resEmail = $("<p>").text("Name: " + data[i].email).addClass("card-text");
+            //         $("#currentWait").append(resEmail);
+            //         var resPhone = $("<p>").text("Name: " + data[i].phoneNumber).addClass("card-text");
+            //         $("#currentWait").append(resPhone);
+            //         var line = $("<hr>");
+            //         resPhone.append(line);
+            //     };
+            // };
         });
     </script>
 </body>

@@ -3,22 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="./style.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make Reservation</title>
 </head>
 
 <body>
     <div class="wrapper">
         <div class="jumbotron">
-            <h1  class="text-center"><span style="font-size: 4.5rem;">Caliente Restaurant</span></h1>
+            <h1 class="text-center"><span style="font-size: 4.5rem;">Caliente Restaurant</span></h1>
             <h4 class="text-center">Make a Reservation</h4>
             <div class="d-flex justify-content-center">
-                <a class="btn btn-dark btn-lg" href="./index.html" role="button"><i class="fa fa-home"></i> Go Home</a>
-                <a class="btn btn-dark btn-lg" href="./view.html" role="button"><i class="fa fa-list-alt"></i> View
+                <a class="btn btn-dark btn-lg" href="/" role="button"><i class="fa fa-home"></i> Go Home</a>
+                <a class="btn btn-dark btn-lg" href="/view" role="button"><i class="fa fa-list-alt"></i> View
                     Tables</a>
 
             </div>
@@ -36,6 +37,10 @@
                                 <input class="form-control" type="text" id="name" placeholder="">
                             </div>
                             <div class="form-group">
+                                <label>ID</label>
+                                <input class="form-control" type="text" id="id" placeholder="">
+                            </div>
+                            <div class="form-group">
                                 <label>Phone Number</label>
                                 <input class="form-control" type="text" id="number" placeholder="Enter your 10-digit number">
                             </div>
@@ -43,36 +48,37 @@
                                 <label for="exampleInputEmail1">Email address</label>
                                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                             </div>
-                            
+
                             <button type="button" class="btn btn-outline-dark" id="submitBtn">Submit</button>
                         </form>
                     </div>
                 </div>
                 <a href="/api/reservations">Reservation API</a> | <a href="/api/waitlist">Waitlist API</a>
-                </div>
             </div>
         </div>
     </div>
-    
+    </div>
+
     <script type="text/javascript">
         // Question: What does this code do?
         $("#submitBtn").on("click", function(event) {
-          event.preventDefault();
-          var newRes = {
-            name: $("#name").val().trim(),
-            number: $("#number").val().trim(),
-            email: $("#email").val().trim(),
-            id: $("#id").val().trim()
-          };
-    
-          // Question: What does this code do??
-          $.post("/api/reservations", newRes)
-            .then(function(data) {
-              console.log("reservation.html", data);
-              alert("Adding you to the reservation list...");
-            });
+            event.preventDefault();
+            var newRes = {
+                name: $("#name").val().trim(),
+                number: $("#number").val().trim(),
+                email: $("#email").val().trim(),
+                id: $("#id").val().trim()
+            };
+
+            // Question: What does this code do??
+            $.post("/api/waiting", newRes)
+                .then(function(data) {
+                    console.log("reservation.html", data);
+                    alert("Adding you to the reservation list...");
+                    window.location.replace("/reservation");
+                });
         });
-      </script>
+    </script>
 </body>
 
 </html>
